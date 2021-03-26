@@ -12,7 +12,11 @@
 </head>
 <body>
     <nav>
-        <h4>Microblog: <a href="{{ url_for('index')}}">Home</a> <a href="{{ url_for('login')}}">Login</a></h4>
+        <h4>Microblog: 
+            <a href="{{ url_for('index')}}">Home</a> 
+            <a href="{{ url_for('login')}}">Login</a> 
+            <a href="{{ url_for('logout')}}">Logout</a>
+        </h4>
     </nav>
     <hr>
     {% with messages = get_flashed_messages() %}
