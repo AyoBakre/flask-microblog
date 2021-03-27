@@ -3,7 +3,7 @@
 {% block body %}
     <h1>{{ current_user.username }}</h1>
     {% for post in posts %}
-        <h1>{{ post.author.username }} : {{ post.body }}</h1>
+        {% include '_post.html' %}
     {% endfor %}
 
 {% endblock body %}
