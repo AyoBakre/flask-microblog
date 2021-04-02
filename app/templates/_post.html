@@ -1,15 +1,22 @@
-<table>
-    <tr valign="top">
+<table class="table table-hover">
+    <tr>
         {% if posts %}
-        <td><img id='icon' src="{{ url_for('static', filename='profile_pictures/' + post.author.profile_picture) }}" alt=""></td>
+        <td width="70px">
+            <a href="{{ url_for('user', username=post.author.username) }}">
+                <img id='icon' src="{{ url_for('static', filename='profile_pictures/' + post.author.profile_picture) }}" alt="">
+            </a>
+        </td>
         {% else %} 
-        <td><img id='icon' src="{{ profile_picture }}" alt=""></td>
+        <td>
+            <img id='icon' src="{{ profile_picture }}" alt=""></td>
         {% endif %}
         <td>
             <a href="{{ url_for('user', username=post.author.username) }}">
                 {{ post.author.username }}
             </a>
-            says:<br>{{ post.body }}
+            says:
+            <br>
+            {{ post.body }}
         </td>
     </tr>
 </table>
