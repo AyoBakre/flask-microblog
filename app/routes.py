@@ -23,6 +23,7 @@ def before_request():
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
+    flash('You are seeing posts from users you are following only')
     form = PostForm()
     if form.validate_on_submit():
         post = Post(body=form.post.data, author=current_user)
@@ -44,6 +45,8 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    flash('''Here for a demo and don't want to use your real details, you can register using fake info \n
+                        or login using: 'email': demo@socail-buzz.com, 'password': 'demo' ''')
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = LoginForm()
@@ -68,6 +71,9 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    flash('''Here for a demo and don't want to use your real details, you can register using fake info \n
+                        or login using: 'email': demo@social-buzz.com, 'password': 'demo' ''')
+
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegistrationForm()
@@ -176,6 +182,7 @@ def unfollow(username):
 @app.route('/explore')
 @login_required
 def explore():
+    flash('You are seeing posts from all users')
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.timestamp.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False)
